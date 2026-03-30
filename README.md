@@ -14,6 +14,8 @@ The system performs sampling of tri-axis vibration, temperature, humidity, and a
 
 ## Hardware Setup
 This project utilizes a Distributed Computing Architecture, requiring the assembly of two distinct nodes: the **Intelligent HMI (ESP32-S3)** and the **Sensor DAQ Node (Pi Pico W)**.
+![Circuit Diagram Image](Images/Circuit_Diagram.png)
+Use the above Circuit Diagram to assemble the circuit.
 
 ### Assembly of the ESP32-S3-BOX-3 Part
 The ESP32-S3-BOX-3 serves as the central hub. It handles the high-resolution display, WiFi stack, and the HTTP Web Server.
