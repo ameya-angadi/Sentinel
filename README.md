@@ -29,12 +29,12 @@ The Raspberry Pi Pico W acts as the high-speed Data Acquisition (DAQ) node. It i
 **Vibration Sensor (MPU6050)**: 
 Use the dedicated I2C Bus 1 (GPIO 2 - SDA, GPIO 3 - SCL) for maximum isolation.
                     
-                    Connect SDA to GPIO 2 and SCL to GPIO 3.
+      Connect SDA to GPIO 2 and SCL to GPIO 3.
 **Environment Sensors (BMP280 & DHT11)**: 
 Use the I2C Bus 0 (GPIO 4 - SDA, GPIO 5 - SCL) 
                     
-                    for the BMP280: SDA to GPIO 4 and SCL to GPIO 5.
-                    Connect the DHT11 Data Pin to GPIO 15.
+      for the BMP280: SDA to GPIO 4 and SCL to GPIO 5.
+      Connect the DHT11 Data Pin to GPIO 15.
 
 Connect the power of each sensor pin to the 3V3 Out and GND pins of the pico.
 
@@ -153,7 +153,7 @@ To facilitate a professional monitoring station, a Local HTML File was developed
 
 **UX Continuity**: The remote dashboard mirrors the essential data from the physical BOX-3 screen, including Vibration Magnitude, Temperature, Atmospheric Pressure, and Maintenance Schedules, providing a unified experience for the worker.
 
-The html code file is available with the name **"Sentinel_Local.html"**.
+The html code file is available with the name **"Sentinel Dashboard.html"**.
 
 ## Future Improvements
 Looking ahead, the Sentinel Hub is designed to be an expandable platform for **Industrial IoT (IIoT)**. A primary next step is the **integration of an SD Card Module to enable Local Data Logging**, allowing for years of historical telemetry to be archived for audit and trend analysis. This **massive dataset** of vibration, temperature, and atmospheric pressure will serve as the **foundation for training Advanced AI Models**.
