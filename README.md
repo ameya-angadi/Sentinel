@@ -124,7 +124,7 @@ Low-Latency Communication: By utilizing a lightweight HTML structure, the server
 ### Local HTML Dashboard
 To facilitate a professional monitoring station, a Local HTML File was developed to act as the primary interface for PC-based operators.
 
-Iframe Integration: The local file uses an HTML Iframe to pull the live sensor data directly from the ESP32’s IP address.
+Iframe Integration: The local file uses an HTML Iframe to pull the live sensor data directly from the ESP32’s IP address. If needed open this file to edit the local IP of the ESP32 here.
 
 Auto-Sync Logic: A custom JavaScript loop was implemented to refresh the data every 500 milliseconds. This allows for a steady, reliable stream of telemetry on the computer screen without overwhelming the network bandwidth.
 
