@@ -19,7 +19,7 @@ This project utilizes a Distributed Computing Architecture, requiring the assemb
 The ESP32-S3-BOX-3 serves as the central hub. It handles the high-resolution display, WiFi stack, and the HTTP Web Server.
 
 
-Connect the ESP32-S3-BOX-3's display module to the ESP32-S3-BOX-3's BREAD module as shown above.
+Connect the ESP32-S3-BOX-3's display module to the ESP32-S3-BOX-3's BREAD module.
 
 ### Assembly of the Pi Pico Part
 ![Pico DAQ Node Image](Images/Pico_DAQ_Node.jpg)
