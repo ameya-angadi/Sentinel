@@ -1,4 +1,4 @@
-# Sentinel
+# Sentinel: Industry 4.0 Smart Monitoring Node
 
 ![Sentinel Final looks](Images/Sentinel_Final_Looks.jpg)
 
