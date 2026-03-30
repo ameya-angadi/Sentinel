@@ -155,6 +155,10 @@ To facilitate a professional monitoring station, a Local HTML File was developed
 
 The html code file is available with the name **"Sentinel_Local.html"**.
 
+## Future Improvements
+Looking ahead, the Sentinel Hub is designed to be an expandable platform for **Industrial IoT (IIoT)**. A primary next step is the **integration of an SD Card Module to enable Local Data Logging**, allowing for years of historical telemetry to be archived for audit and trend analysis. This **massive dataset** of vibration, temperature, and atmospheric pressure will serve as the **foundation for training Advanced AI Models**.
+
+By utilizing Machine Learning frameworks like **TensorFlow Lite**, these models could run directly on the ESP32-S3 at the edge or on a **centralized Monitoring Laptop** to detect subtle patterns in mechanical wear that are invisible to static thresholds.
 
 ## Conclusion
 ![ESP32 Display Health](Images/ESP32_Display_Healthy.jpg)
