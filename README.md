@@ -92,7 +92,6 @@ To compile this code, the following libraries must be installed manually via the
 
 1. **LVGL (v8.3.11)**: Authored by kisvegabor. This is the core graphics library.
 2. **ESP_Display_Panel**: Authored by Espressif Systems. This provides the hardware-specific drivers for the BOX-3 integrated display.
-Installation & Uploading:
 
 ### **Configuration**
 Update your WiFi credentials in the main firmware:
