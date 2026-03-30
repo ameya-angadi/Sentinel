@@ -1,4 +1,4 @@
-# Introduction
+# Sentinel
 ## Problem Statement Analysis
 In modern industrial environments, the "health" of a machine is often invisible until a catastrophic failure occurs. While many IoT solutions attempt to provide predictive maintenance, they frequently suffer from two critical flaws: Hardware Overload and Data Noise. Standard single-chip monitoring systems often crash or experience significant latency when trying to manage high-resolution displays, WiFi stacks, and precise sensor acquisition simultaneously. This leads to "blind spots" where transient mechanical faults are missed. Furthermore, raw accelerometer data is inherently biased by Earth's gravity, making it difficult to isolate true mechanical vibration from the static orientation of the sensor without complex, manual calibration. Finally, many low-cost monitors lack data persistence, meaning service records and next-maintenance schedules are lost every time the power is cycled.
 
