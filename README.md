@@ -76,6 +76,14 @@ To compile this code, the following libraries must be installed manually via the
 2. ESP_Display_Panel: Authored by Espressif Systems. This provides the hardware-specific drivers for the BOX-3 integrated display.
 Installation & Uploading:
 
+### **3. Configuration**
+Update your WiFi and API credentials in the main firmware:
+```cpp
+const char* ssid     = "";
+const char* password = "";
+configTime(19800, 0, "pool.ntp.org");
+```
+
 Folder Structure: You must copy the entire folder named Sentinel_ESP to your local directory. This folder contains the main .ino file along with the ui.h, lvgl_v8_port.h and other important files.
 Board Support: Ensure you have the latest ESP32 Board Library installed in your IDE.
 IDE Settings: In the Arduino IDE, select the board as ESP32S3 Box. While the "Box 3" specific definition might not be visible in all versions, selecting the standard ESP32S3 Box works perfectly for this hardware without any compatibility issues.
