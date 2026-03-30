@@ -26,9 +26,13 @@ Connect the ESP32-S3-BOX-3's display module to the ESP32-S3-BOX-3's BREAD module
 
 The Raspberry Pi Pico W acts as the high-speed Data Acquisition (DAQ) node. It is responsible for sampling the sensor array and performing required functions to collect and process the data.
 
-**Vibration Sensor (MPU6050)**: Use the dedicated I2C Bus 1 (GPIO 2 - SDA, GPIO 3 - SCL) for maximum isolation.
+**Vibration Sensor (MPU6050)**: 
+Use the dedicated I2C Bus 1 (GPIO 2 - SDA, GPIO 3 - SCL) for maximum isolation.
+                    
                     Connect SDA to GPIO 2 and SCL to GPIO 3.
-**Environment Sensors (BMP280 & DHT11)**: Use the I2C Bus 0 (GPIO 4 - SDA, GPIO 5 - SCL) 
+**Environment Sensors (BMP280 & DHT11)**: 
+Use the I2C Bus 0 (GPIO 4 - SDA, GPIO 5 - SCL) 
+                    
                     for the BMP280: SDA to GPIO 4 and SCL to GPIO 5.
                     Connect the DHT11 Data Pin to GPIO 15.
 
@@ -39,11 +43,12 @@ The High-Pass Alpha Filter logic assumes the sensor is rigidly attached to the v
 
 ### Connecting the two parts (ESP32 - Pico)
 UART Connectivity: Connect the communication lines.
+      
       RXD1 (GPIO 40): Connect to the Pi Pico TX (GP0).
       TXD1 (GPIO 41): Connect to the Pi Pico RX (GP1).
       
-Power Distribution: To ensure WiFi stability and prevent brownouts:
-Connect the 3V3 Out pin of the ESP32 to the VBUS pin of the Pi Pico, that is the pico will be powered by the esp32.
+**Power Distribution**: To ensure WiFi stability and prevent brownouts:
+Connect the 3V3 Out pin of the ESP32 to the VBUS pin of the Pi Pico, that is the pico will be powered by the ESP32.
 Ensure a Common Ground (GND) is established between both boards.
 HMI Mounting: Ensure the BOX-3 is oriented for easy viewing, as it will provide the primary Real-Time Health Status and NTP-synced clock display.
 
@@ -80,16 +85,16 @@ If you wish to modify the UI, extract all files in `Sentinel_Design_Files.zip`, 
 The software for both nodes in the Sentinel Hub was developed using the Arduino IDE, leveraging its vast ecosystem of libraries to manage high-speed data streams and complex graphical rendering.
 
 ### Part 1: Coding the ESP32-S3-BOX-3 (Sentinel_ESP32.ino)
-The central HMI node is programmed via the Sentinel_ESP32.ino sketch. This part of the system manages the LVGL graphics engine, handles WiFi connectivity, and serves the HTTP Web Dashboard.
+The central HMI node is programmed via the **Sentinel_ESP32.ino sketch**. This part of the system manages the LVGL graphics engine, handles WiFi connectivity, and serves the HTTP Web Dashboard.
 
 Required Manual Libraries:
 To compile this code, the following libraries must be installed manually via the Arduino Library Manager:
 
-1. LVGL (v8.3.11): Authored by kisvegabor. This is the core graphics library.
-2. ESP_Display_Panel: Authored by Espressif Systems. This provides the hardware-specific drivers for the BOX-3 integrated display.
+1. **LVGL (v8.3.11)**: Authored by kisvegabor. This is the core graphics library.
+2. **ESP_Display_Panel**: Authored by Espressif Systems. This provides the hardware-specific drivers for the BOX-3 integrated display.
 Installation & Uploading:
 
-### **3. Configuration**
+### **Configuration**
 Update your WiFi credentials in the main firmware:
 ```cpp
 const char* ssid     = "";
@@ -105,20 +110,20 @@ IDE Settings: In the Arduino IDE, select the board as ESP32S3 Box. While the "Bo
 The high-speed sensor acquisition is handled by the Sentinel_Pico.ino sketch. This code is optimized for Digital Signal Processing (DSP) and Serial Data Streaming.
 
 Core & Environment:
-This node requires the Earle Philhower Pico Core for advanced RP2040 support.
+This node requires the **Earle Philhower Pico Core for RP2040 support**.
 
 You can follow my detailed tutorial on setting up this core here: <a href = "https://projecthub.arduino.cc/angadiameya007/getting-started-with-raspberry-pi-pico-in-arduino-ide-5e13ee">Getting Started with Raspberry Pi Pico in Arduino IDE. </a>
 
 Required Manual Libraries:
 The following libraries by Adafruit Industries must be installed manually. Please ensure you select "Install All Dependencies" when prompted:
 
-DHT Sensor Library: Used for the DHT11 temperature and humidity data.
+**DHT Sensor Library**: Used for the DHT11 temperature and humidity data.
 
-Adafruit BMP280 Library: Used for high-precision atmospheric pressure readings.
+**Adafruit BMP280 Library**: Used for high-precision atmospheric pressure readings.
 
-Adafruit MPU6050: Used for the tri-axis accelerometer and vibration monitoring.
+**Adafruit MPU6050**: Used for the tri-axis accelerometer and vibration monitoring.
 
-Adafruit Unified Sensor: A required base dependency for the sensors above.
+**Adafruit Unified Sensor**: A required base dependency for the sensors above.
 
 By offloading these sensor tasks to the Pi Pico, we ensure that the ESP32-S3 remains completely responsive for user interaction and network requests, preventing the system "hangs" common in single-processor designs.
 
@@ -142,17 +147,18 @@ Low-Latency Communication: By utilizing a lightweight HTML structure, the server
 
 To facilitate a professional monitoring station, a Local HTML File was developed to act as the primary interface for PC-based operators.
 
-Iframe Integration: The local file uses an HTML Iframe to pull the live sensor data directly from the ESP32’s IP address. If needed open this file to edit the local IP of the ESP32 here.
+**Iframe Integration**: The local file uses an HTML Iframe to pull the live sensor data directly from the ESP32’s IP address. If needed open this file to edit the local IP of the ESP32 here. This method allows us to add multiple Sentinel nodes on a single screen thsu making monitoring very easy.
 
-Auto-Sync Logic: A custom JavaScript loop was implemented to refresh the data every 500 milliseconds. This allows for a steady, reliable stream of telemetry on the computer screen without overwhelming the network bandwidth.
+**Auto-Sync Logic**: A custom JavaScript loop was implemented to refresh the data every 500 milliseconds. This allows for a steady, reliable stream of telemetry on the computer screen without overwhelming the network bandwidth.
 
-UX Continuity: The remote dashboard mirrors the essential data from the physical BOX-3 screen, including Vibration Magnitude, Temperature, Atmospheric Pressure, and Maintenance Schedules, providing a unified experience for the worker.
+**UX Continuity**: The remote dashboard mirrors the essential data from the physical BOX-3 screen, including Vibration Magnitude, Temperature, Atmospheric Pressure, and Maintenance Schedules, providing a unified experience for the worker.
 
-The html file is available with the name Sentinel_Local.html.
+The html code file is available with the name **"Sentinel_Local.html"**.
+
 
 ## Conclusion
 ![ESP32 Display Health](Images/ESP32_Display_Healthy.jpg)
 
-The Sentinel Predictive Maintenance Hub represents a significant step forward in low-cost, high-reliability industrial monitoring. By moving away from traditional monolithic software designs and embracing a Distributed Computing Architecture, the project successfully solves the common issues of system latency and hardware brownouts.
+The Sentinel Predictive Maintenance Hub represents a significant step forward in low-cost, high-reliability industrial monitoring. By moving away from traditional monolithic software designs and embracing a Distributed Computing Architecture, the project successfully solves the common issues of system latency and unexpected machine down-time.
 
-Through the combination of High-Pass Alpha Filtering for gravity-free vibration sensing, Non-Volatile Storage for persistent service logging, and a Dual-Node WiFi Gateway, the Sentinel Hub provides a comprehensive solution for modern factories. It is more than just a sensor; it is an Intuitive HMI that empowers workers with the data they need to prevent failure before it happens. Whether viewed on the high-resolution ESP32-S3-BOX-3 display or a remote web dashboard, Sentinel ensures that machine health is always visible, documented, and actionable.
+Through the combination of High-Pass Alpha Filtering for gravity-free vibration sensing, Non-Volatile Storage for persistent service logging, and a Dual-Node WiFi Gateway, the Sentinel Hub provides a comprehensive solution for factories. It is more than just a sensor; it is an Intuitive HMI that empowers workers with the data they need to prevent failure before it happens. Whether viewed on the ESP32-S3-BOX-3 display or a remote web dashboard, Sentinel ensures that machine health is always visible, documented, and actionable.
