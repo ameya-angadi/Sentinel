@@ -77,7 +77,7 @@ To compile this code, the following libraries must be installed manually via the
 Installation & Uploading:
 
 ### **3. Configuration**
-Update your WiFi and API credentials in the main firmware:
+Update your WiFi credentials in the main firmware:
 ```cpp
 const char* ssid     = "";
 const char* password = "";
