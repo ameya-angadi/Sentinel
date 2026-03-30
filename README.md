@@ -1,4 +1,10 @@
 # Sentinel
+
+![Sentinel Final looks](Images/Sentinel_Final_Looks.jpg)
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Hardware: ESP32-S3-BOX-3](https://img.shields.io/badge/Hardware-ESP32--S3--BOX--3-orange)](https://github.com/espressif/esp-box/blob/master/docs/hardware_overview/esp32_s3_box_3/hardware_overview_for_box_3.md)
+
 ## Problem Statement Analysis
 In modern industrial environments, the "health" of a machine is often invisible until a catastrophic failure occurs. While many IoT solutions attempt to provide predictive maintenance, they frequently suffer from two critical flaws: Hardware Overload and Data Noise. Standard single-chip monitoring systems often crash or experience significant latency when trying to manage high-resolution displays, WiFi stacks, and precise sensor acquisition simultaneously. This leads to "blind spots" where transient mechanical faults are missed. Furthermore, raw accelerometer data is inherently biased by Earth's gravity, making it difficult to isolate true mechanical vibration from the static orientation of the sensor without complex, manual calibration. Finally, many low-cost monitors lack data persistence, meaning service records and next-maintenance schedules are lost every time the power is cycled.
 
@@ -16,6 +22,8 @@ The ESP32-S3-BOX-3 serves as the central hub. It handles the high-resolution dis
 Connect the ESP32-S3-BOX-3's display module to the ESP32-S3-BOX-3's BREAD module as shown above.
 
 ### Assembly of the Pi Pico Part
+![Pico DAQ Node Image](Images/Pico_DAQ_Node.jpg)
+
 The Raspberry Pi Pico W acts as the high-speed Data Acquisition (DAQ) node. It is responsible for sampling the sensor array and performing required functions to collect and process the data.
 
 **Vibration Sensor (MPU6050)**: Use the dedicated I2C Bus 1 (GPIO 2 - SDA, GPIO 3 - SCL) for maximum isolation.
@@ -43,11 +51,16 @@ HMI Mounting: Ensure the BOX-3 is oriented for easy viewing, as it will provide 
 The visual identity and user interface of the Sentinel Hub were engineered to prioritize readability and operator speed. In an industrial setting, every second counts, so the design focuses on delivering high-contrast, "at-a-glance" information.
 
 ### Pixel Art Asset Creation in GIMP
+![GIMP Editing Image](Images/GIMP_Editing.png)
+
 To maintain a clean, technical aesthetic that consumes minimal memory on the ESP32, all logos and branding elements were custom-designed as Pixel Art.
 
 Using GIMP (GNU Image Manipulation Program), icons were created at specific resolutions (e.g., 50x50) to ensure they remained sharp on the BOX-3’s display without anti-aliasing blur. By working at the pixel level, we ensured that the Sentinel branding and status indicators were visually distinct even when viewed from a distance or in low-light factory conditions. These assets were exported as regular .png images to optimize the UI.
 
 ### UI Development with SquareLine Studio
+![Squareline Studio Image](Images/Squareline_Studio_UI.png)
+
+
 The core interface was architected using SquareLine Studio, a powerful visual tool for the LVGL (Light and Versatile Graphics Library).
 
 The design utilizes a User-Centric (UX) approach, featuring:
@@ -113,6 +126,9 @@ By offloading these sensor tasks to the Pi Pico, we ensure that the ESP32-S3 rem
 The Sentinel Hub extends its functionality beyond the physical device by acting as a WiFi Gateway. This allows for remote, real-time monitoring of industrial assets from any workstation on the same network.
 
 ### Web Server Implementation
+![Web UI Image](Images/WEB_UI_Healthy.png)
+
+
 The ESP32-S3-BOX-3 hosts a built-in HTTP Web Server. While the internal display updates at a lightning-fast rate, the web server is optimized to serve a Minimalist Dashboard designed for remote oversight.
 
 High-Frequency Data Refresh: The internal web state is updated every 50ms to match the Pico’s vibration stream, ensuring that the data served is always current.
@@ -122,6 +138,8 @@ Context-Aware Visual Alerts: The web server utilizes Dynamic CSS. Depending on t
 Low-Latency Communication: By utilizing a lightweight HTML structure, the server minimizes the processing load on the ESP32, ensuring that serving web requests never interferes with the critical LVGL UI rendering or UART data parsing.
 
 ### Local HTML Dashboard
+![Web UI Image](Images/WEB_UI_Danger.png)
+
 To facilitate a professional monitoring station, a Local HTML File was developed to act as the primary interface for PC-based operators.
 
 Iframe Integration: The local file uses an HTML Iframe to pull the live sensor data directly from the ESP32’s IP address. If needed open this file to edit the local IP of the ESP32 here.
@@ -133,6 +151,8 @@ UX Continuity: The remote dashboard mirrors the essential data from the physical
 The html file is available with the name Sentinel_Local.html.
 
 ## Conclusion
+![ESP32 Display Health](Images/ESP32_Display_Healthy.jpg)
+
 The Sentinel Predictive Maintenance Hub represents a significant step forward in low-cost, high-reliability industrial monitoring. By moving away from traditional monolithic software designs and embracing a Distributed Computing Architecture, the project successfully solves the common issues of system latency and hardware brownouts.
 
 Through the combination of High-Pass Alpha Filtering for gravity-free vibration sensing, Non-Volatile Storage for persistent service logging, and a Dual-Node WiFi Gateway, the Sentinel Hub provides a comprehensive solution for modern factories. It is more than just a sensor; it is an Intuitive HMI that empowers workers with the data they need to prevent failure before it happens. Whether viewed on the high-resolution ESP32-S3-BOX-3 display or a remote web dashboard, Sentinel ensures that machine health is always visible, documented, and actionable.
